@@ -2,14 +2,13 @@
 using namespace std;
 
 int func1(int N){
-  int cnt = 0;  
-  for (int i = 1; i <= N; ++i) {
-      if (i % 3 == 0 || i & 5 == 0) {
-          cnt++;
-      }
+  int sum = 0;  
+  for (int i = 1; i <= N; i++) {
+      if ((i % 3 == 0) || (i % 5 == 0)) sum += i;
   }
-  return cnt;
+  return sum;
 }
+// O(N) 이 아닌 O(1)로 구하는 방식이 존재
 
 int func2(int arr[], int N){
   for (int i = 0; i != (N - 1); ++i) {
@@ -19,14 +18,37 @@ int func2(int arr[], int N){
   }
   return 0;
 }
+// O(N^2) 가 아닌 O(N)으로 구하는 방식이 존재
 
+//처음 시도 못했음
 int func3(int N){
-  return -1;
+  for (int i = 1; i * i <= N; i++) {
+      if (i * i == N) return 1;
+  }
+  return 0;
+}
+// There is way to retun O(lg N) not O(N^1/2)
+
+// 틀림
+int func4(int N){
+    int answer = 0;
+    for (int i = 1; i * i <= N; i++) {
+        int result = i * i;
+        if (result <= N && (result % 2 == 0)) {
+            answer = result;
+        }
+    }
+    if (answer > 0) return answer;
+    else return -1;
 }
 
+/* 정답
 int func4(int N){
-  return -1;
+  int val = 1;
+  while(2*val <= N) val *= 2;
+  return val;
 }
+*/
 
 void test1(){
   cout << "****** func1 test ******\n";
