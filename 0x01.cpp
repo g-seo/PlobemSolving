@@ -10,6 +10,7 @@ int func1(int N){
 }
 // O(N) 이 아닌 O(1)로 구하는 방식이 존재
 
+
 int func2(int arr[], int N){
   for (int i = 0; i != (N - 1); ++i) {
       for (int j = (i + 1); j != N; ++j) {
@@ -19,6 +20,19 @@ int func2(int arr[], int N){
   return 0;
 }
 // O(N^2) 가 아닌 O(N)으로 구하는 방식이 존재
+// 배열의 특징 활용(인덱스 확인 시 O(1)이 사용됨)
+/*
+int func2(int arr[], int N){
+  int occur[101] = {};
+  for(int i = 0; i < N; i++){
+    if(occur[100-arr[i]] == 1)
+      return 1;
+    occur[arr[i]] = 1;
+  }
+  return 0;
+}
+*/
+
 
 //처음 시도 못했음
 int func3(int N){
@@ -28,6 +42,7 @@ int func3(int N){
   return 0;
 }
 // There is way to retun O(lg N) not O(N^1/2)
+
 
 // 틀림
 int func4(int N){
@@ -41,7 +56,6 @@ int func4(int N){
     if (answer > 0) return answer;
     else return -1;
 }
-
 /* 정답
 int func4(int N){
   int val = 1;
