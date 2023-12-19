@@ -30,8 +30,7 @@ int func2(int arr[], int N){
     occur[arr[i]] = 1;
   }
   return 0;
-}
-*/
+} */
 
 
 //처음 시도 못했음
