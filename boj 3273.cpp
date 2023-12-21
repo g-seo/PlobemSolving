@@ -1,0 +1,63 @@
+//나의 시도: 답은 맞으나 런타임 에러 발생
+#include <iostream>
+
+using namespace std;
+int num[1000001];
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int n, cnt = 0;
+    cin >> n;
+    
+    int *arr = new int[n];
+    for (int i = 0; i != n; ++i) {
+        cin >> arr[i];
+    }
+    
+    int k;
+    cin >> k;
+    
+    for (int j = 0; j != n; ++j) {
+        if (num[k - arr[j]] == 1) {
+            cnt++;
+        }
+        num[arr[j]]++;
+    }
+    
+    cout << cnt;
+    
+    delete[] arr;
+    
+    return 0;
+}
+
+/////////////////////////////////////////////////////
+//맞은 풀이
+#include <iostream>
+#include <algorithm>
+#include <numeric>
+
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
+    int n, x;
+    int a[1000000];
+    bool occur[2000000] = {};
+    cin >> n;
+    for(int i=0; i<n; i++)  cin >> a[i];
+    cin >> x;
+
+    int cnt=0;
+    for(int i=0; i<n; i++) {
+        if(x-a[i]>0 && occur[x-a[i]]) { // x-a[i]가 유효한 원소인지 검사
+            cnt++;
+        }
+        occur[a[i]] = true;
+    }
+    cout << cnt;
+}
